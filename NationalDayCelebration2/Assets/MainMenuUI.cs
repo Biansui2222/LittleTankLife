@@ -14,7 +14,7 @@ public class MainMenuUI : MonoBehaviour
         var ed2 = G.edCount[1];
         var ed3 = G.edCount[2];
         if (!ed1 && !ed2 && !ed3) {
-            m_Title.text= "人生小作战ヾ(≧▽≦*)o";
+            m_Title.text= "坦克人生小作战ヾ(≧▽≦*)o";
         }
         else if(ed1 && !ed2 && !ed3)
         {
