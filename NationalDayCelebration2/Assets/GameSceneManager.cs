@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class GameSceneManager : MonoBehaviour {
     private UIManager m_uiman;
@@ -8,15 +9,32 @@ public class GameSceneManager : MonoBehaviour {
     [SerializeField]private AITank m_prefabAI;
     private List<AITank> m_lstAITanks;
     private int progress = 0;
-	// Use this for initialization
-	void Awake () {
+
+    [SerializeField]private JoyStick2 m_LeftJoyStick;
+    [SerializeField]private JoyStick2 m_RightJoyStick;
+
+    void Awake () {
         Debug.Log("GSM Awake");
         m_uiman = UIManager.Instance;
         m_area = GetComponent<AreaManager>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void Start()
+    {
+        var plr = GameObject.FindWithTag("Player");
+        var ctr = plr.GetComponent<DoubleAxisControler>();
+        //这段写法是偷工减料大法好
+        ctr.GetAxis1Horizontal = () => m_LeftJoyStick.State == JoyStick2.JoyState.down ? m_LeftJoyStick.Axis.x : CrossPlatformInputManager.GetAxis("Horizontal");
+        ctr.GetAxis1Vertical = () => m_LeftJoyStick.State == JoyStick2.JoyState.down ? m_LeftJoyStick.Axis.y : CrossPlatformInputManager.GetAxis("Vertical");
+        ctr.GetAxis1Using = () => CrossPlatformInputManager.GetAxisRaw("Horizontal") != 0 && CrossPlatformInputManager.GetAxisRaw("Vertical") != 0 && m_LeftJoyStick.State!=JoyStick2.JoyState.down;
+        ctr.GetAxis2Horizontal = () => m_RightJoyStick.State == JoyStick2.JoyState.down ? m_RightJoyStick.Axis.x : CrossPlatformInputManager.GetAxis("Horizontal2");
+        ctr.GetAxis2Vertical = () => m_RightJoyStick.State == JoyStick2.JoyState.down ? m_RightJoyStick.Axis.y : CrossPlatformInputManager.GetAxis("Vertical2");
+        ctr.GetAxis2Using = () => CrossPlatformInputManager.GetAxisRaw("Horizontal2") != 0 && CrossPlatformInputManager.GetAxisRaw("Vertical2") != 0 && m_RightJoyStick.State != JoyStick2.JoyState.down;
+    }
+
+    // Update is called once per frame
+    void Update () {
+
         switch (progress)
         {
             case -1://GameOver
