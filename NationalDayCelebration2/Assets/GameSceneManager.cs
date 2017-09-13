@@ -24,17 +24,24 @@ public class GameSceneManager : MonoBehaviour {
         var plr = GameObject.FindWithTag("Player");
         var ctr = plr.GetComponent<DoubleAxisControler>();
         //这段写法是偷工减料大法好
-        ctr.GetAxis1Horizontal = () => m_LeftJoyStick.State == JoyStick2.JoyState.down ? m_LeftJoyStick.Axis.x : CrossPlatformInputManager.GetAxis("Horizontal");
-        ctr.GetAxis1Vertical = () => m_LeftJoyStick.State == JoyStick2.JoyState.down ? m_LeftJoyStick.Axis.y : CrossPlatformInputManager.GetAxis("Vertical");
-        ctr.GetAxis1Using = () => CrossPlatformInputManager.GetAxisRaw("Horizontal") != 0 && CrossPlatformInputManager.GetAxisRaw("Vertical") != 0 && m_LeftJoyStick.State!=JoyStick2.JoyState.down;
-        ctr.GetAxis2Horizontal = () => m_RightJoyStick.State == JoyStick2.JoyState.down ? m_RightJoyStick.Axis.x : CrossPlatformInputManager.GetAxis("Horizontal2");
-        ctr.GetAxis2Vertical = () => m_RightJoyStick.State == JoyStick2.JoyState.down ? m_RightJoyStick.Axis.y : CrossPlatformInputManager.GetAxis("Vertical2");
-        ctr.GetAxis2Using = () => CrossPlatformInputManager.GetAxisRaw("Horizontal2") != 0 && CrossPlatformInputManager.GetAxisRaw("Vertical2") != 0 && m_RightJoyStick.State != JoyStick2.JoyState.down;
+        ctr.GetAxis1Horizontal = () => m_LeftJoyStick.State == JoyStick2.JoyState.down ? m_LeftJoyStick.Axis.x : Input.GetAxis("Horizontal");
+        ctr.GetAxis1Vertical = () => m_LeftJoyStick.State == JoyStick2.JoyState.down ? m_LeftJoyStick.Axis.y : Input.GetAxis("Vertical");
+        ctr.GetAxis1Using = () => Input.GetAxisRaw("Horizontal") != 0 && Input.GetAxisRaw("Vertical") != 0 && m_LeftJoyStick.State != JoyStick2.JoyState.down;
+        ctr.GetAxis2Horizontal = () => m_RightJoyStick.State == JoyStick2.JoyState.down ? m_RightJoyStick.Axis.x : Input.GetAxis("Horizontal2");
+        ctr.GetAxis2Vertical = () => m_RightJoyStick.State == JoyStick2.JoyState.down ? m_RightJoyStick.Axis.y : Input.GetAxis("Vertical2");
+        ctr.GetAxis2Using = () => Input.GetAxisRaw("Horizontal2") != 0 && Input.GetAxisRaw("Vertical2") != 0 && m_RightJoyStick.State != JoyStick2.JoyState.down;
+        //DDebug
+        //ctr.GetAxis1Horizontal = () => m_LeftJoyStick.Axis.x;
+        //ctr.GetAxis1Vertical = () => m_LeftJoyStick.Axis.y;
+        //ctr.GetAxis1Using = () => m_LeftJoyStick.State != JoyStick2.JoyState.down;
+        //ctr.GetAxis2Horizontal = () => m_RightJoyStick.Axis.x;
+        //ctr.GetAxis2Vertical = () => m_RightJoyStick.Axis.y;
+        //ctr.GetAxis2Using = () => m_RightJoyStick.State != JoyStick2.JoyState.down;
+
     }
 
     // Update is called once per frame
     void Update () {
-
         switch (progress)
         {
             case -1://GameOver
@@ -55,6 +62,7 @@ public class GameSceneManager : MonoBehaviour {
                 progress++;
                 break;
             case 2:
+                //wait for CreatAITankRandom
                 break;
             case 3:
                 //ai all have creat 

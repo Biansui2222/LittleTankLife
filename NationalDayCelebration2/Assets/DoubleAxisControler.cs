@@ -18,15 +18,15 @@ public class DoubleAxisControler : MonoBehaviour
 
     private Rigidbody m_rigi;
 
-    private void Start()
+    private void Awake()
     {
         m_rigi = GetComponent<Rigidbody>();
-        GetAxis1Horizontal = () => CrossPlatformInputManager.GetAxis("Horizontal");
-        GetAxis1Vertical = () => CrossPlatformInputManager.GetAxis("Vertical");
-        GetAxis1Using = () => CrossPlatformInputManager.GetAxisRaw("Horizontal")!=0 && CrossPlatformInputManager.GetAxisRaw("Vertical")!=0;
-        GetAxis2Horizontal = () => CrossPlatformInputManager.GetAxis("Horizontal2");
-        GetAxis2Vertical = () => CrossPlatformInputManager.GetAxis("Vertical2");
-        GetAxis2Using = () => CrossPlatformInputManager.GetAxisRaw("Horizontal2") != 0 && CrossPlatformInputManager.GetAxisRaw("Vertical2") != 0;
+        GetAxis1Horizontal = () => Input.GetAxis("Horizontal");
+        GetAxis1Vertical = () => Input.GetAxis("Vertical");
+        GetAxis1Using = () => Input.GetAxisRaw("Horizontal")!=0 && Input.GetAxisRaw("Vertical")!=0;
+        GetAxis2Horizontal = () => Input.GetAxis("Horizontal2");
+        GetAxis2Vertical = () => Input.GetAxis("Vertical2");
+        GetAxis2Using = () => Input.GetAxisRaw("Horizontal2") != 0 && Input.GetAxisRaw("Vertical2") != 0;
     }
 
     private void Update()
