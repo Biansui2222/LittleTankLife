@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4696905642803286}
   - component: {fileID: 114184024275942466}
+  - component: {fileID: 114622538645881518}
   m_Layer: 0
   m_Name: System
   m_TagString: System
@@ -56,4 +57,17 @@ MonoBehaviour:
   _m_ButtonUI: {fileID: 114639907599531288, guid: 3df07ba06dc263f4892b9285d0fb7414,
     type: 2}
   _m_TimerUI: {fileID: 114813493634425272, guid: f6ed11860a1973a498cea27b1faf6bf8,
+    type: 2}
+--- !u!114 &114622538645881518
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1045448888513630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c06d24e80984424daf2b2aa2b76a46f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_prefabBGM: {fileID: 82133342144263648, guid: 25b56002ae51b5c4e82bd31028dd3e04,
     type: 2}

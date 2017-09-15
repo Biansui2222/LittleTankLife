@@ -36,6 +36,6 @@ public class MainMenuUI : MonoBehaviour
         {
             G.PlayerTankName = m_TankName.text;
         }
-        SceneManager.LoadScene(1);
+        SceneManager2.LoadScene(1);
     }
 }

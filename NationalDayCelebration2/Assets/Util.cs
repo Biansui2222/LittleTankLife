@@ -4,7 +4,13 @@ using UnityEngine;
 
 public static class Util
 {
+    [System.Obsolete]
     public static T RandomIn<T>(params T[] args)
+    {
+        return args[Random.Range(0, args.Length)];
+    }
+
+    public static T RandomSelect<T>(this UnityEngine.Random r, params T[] args)
     {
         return args[Random.Range(0, args.Length)];
     }
