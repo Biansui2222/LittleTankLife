@@ -21,6 +21,9 @@ public class Tank : MonoBehaviour
     public Color BodyColor {
         get { return m_matBody.color; }
     }
+
+    public string Killer { get; private set; }
+
     private Material m_matBody;
     private Material m_matBarrel;
     private bool isBulletHaveSetMat = false;
@@ -73,12 +76,17 @@ public class Tank : MonoBehaviour
         m_BulletManager.Shot();
     }
 
-    public void Boom()
+    public void Boom(object sth)
     {
         playAnimationBoom();
         m_nLife--;
         if (m_nLife <= 0)
         {
+            Bullet b = sth as Bullet;
+            Debug.Assert(b != null);
+            var killer = b.owner.GetComponent<Tank>().m_sTankName;
+            Debug.Assert(killer != string.Empty);
+            this.Killer = killer;
             if (OnLifeTimeEnd != null) OnLifeTimeEnd();
             OutOfGame();
         }
@@ -95,7 +103,7 @@ public class Tank : MonoBehaviour
     private void OnHited(Bullet bullet)
     {
         if(!isFriendlyBullet(bullet))
-        Boom();
+        Boom(bullet);
     }
 
     /// <summary>

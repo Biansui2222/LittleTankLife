@@ -76,7 +76,7 @@ public class GameSceneManager : MonoBehaviour {
         {
             var ai = Instantiate(m_prefabAI);
         ai.Tank.SetRandomColor();
-        ai.Tank.m_sTankName = Util.RandomIn("碰瓷","台风","停电","感冒","KTV","玄学");
+        ai.Tank.m_sTankName =  Util.RandomIn("碰瓷","台风","停电","感冒","KTV","玄学");
         ai.Tank.OnLifeTimeEnd += WhenAITankDead;//TODO
         var randpos = m_area.GetRandomPosInArea();
         ai.transform.position = randpos;
@@ -90,7 +90,10 @@ public class GameSceneManager : MonoBehaviour {
     {
         if (progress == -1) return;
         progress = -1;
-        m_uiman.ShowCenterText("面对无穷无尽的敌人，你终于跪了！");
+        var plr = GameObject.FindGameObjectWithTag("Player")as GameObject;
+        var killer = plr.GetComponent<Tank>().Killer;
+        Debug.Assert(killer!=null);
+        m_uiman.ShowCenterText("你被<color=cyan> " + killer+"</color>打败了！");
         m_uiman.ShowReturnMainButton();
         G.edCount[0] = true;
     }
